@@ -1,13 +1,39 @@
+import 'package:adminpanel/constants/controllers.dart';
+import 'package:adminpanel/helpers/responsiveness.dart';
+import 'package:adminpanel/pages/overview/widgets/card_large.dart';
 import 'package:adminpanel/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OverViewPage extends StatelessWidget {
-  const OverViewPage({ Key? key }) : super(key: key);
+  const OverViewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-     child: CustomText(text: "OverView",)
+    return Column(
+      children: [
+        Obx(
+          () => Row(
+            children: [
+              Container(
+                margin: EdgeInsets.only(
+                    top: ResponsiveWidget.isSmallScreen(context) ? 56 : 6),
+                child: CustomText(
+                  text: menuController.activeItem.value,
+                  size: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
+        ),
+        Expanded(
+            child: ListView(
+          children: [
+            OverViewCardsLargeScreen(),
+          ],
+        ))
+      ],
     );
   }
 }
