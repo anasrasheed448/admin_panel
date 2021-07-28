@@ -13,9 +13,10 @@ class LargeScreen extends StatelessWidget {
           child: SideMenu(),
         ),
         Expanded(
-          flex: 5,
-          child: localNavigator()
-        )
+            flex: 5,
+            child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: localNavigator()))
       ],
     );
   }

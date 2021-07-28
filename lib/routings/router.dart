@@ -1,4 +1,3 @@
-import 'dart:js';
 
 import 'package:adminpanel/pages/auth/authentication.dart';
 import 'package:adminpanel/pages/clients/clients.dart';

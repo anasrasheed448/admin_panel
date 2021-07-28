@@ -1,6 +1,9 @@
 import 'package:adminpanel/constants/controllers.dart';
 import 'package:adminpanel/helpers/responsiveness.dart';
-import 'package:adminpanel/pages/overview/widgets/card_large.dart';
+import 'package:adminpanel/pages/overview/widgets/cards_large.dart';
+import 'package:adminpanel/pages/overview/widgets/cards_medium.dart';
+import 'package:adminpanel/pages/overview/widgets/cards_small.dart';
+// import '';
 import 'package:adminpanel/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +33,14 @@ class OverViewPage extends StatelessWidget {
         Expanded(
             child: ListView(
           children: [
-            OverViewCardsLargeScreen(),
+            if (ResponsiveWidget.isLargeScreen(context) ||
+                ResponsiveWidget.isMediumScreen(context))
+              if (ResponsiveWidget.isCustomScreen(context))
+                OverviewCardsMediumScreen()
+              else
+                OverViewCardsLargeScreen()
+            else
+              OverviewCardsSmallScreen()
           ],
         ))
       ],
