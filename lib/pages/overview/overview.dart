@@ -3,10 +3,14 @@ import 'package:adminpanel/helpers/responsiveness.dart';
 import 'package:adminpanel/pages/overview/widgets/cards_large.dart';
 import 'package:adminpanel/pages/overview/widgets/cards_medium.dart';
 import 'package:adminpanel/pages/overview/widgets/cards_small.dart';
+import 'package:adminpanel/pages/overview/widgets/revenue_section_large.dart';
+import 'package:adminpanel/pages/overview/widgets/revenue_section_small.dart';
 // import '';
 import 'package:adminpanel/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'widgets/available_drivers.dart';
 
 class OverViewPage extends StatelessWidget {
   const OverViewPage({Key? key}) : super(key: key);
@@ -40,7 +44,12 @@ class OverViewPage extends StatelessWidget {
               else
                 OverViewCardsLargeScreen()
             else
-              OverviewCardsSmallScreen()
+              OverviewCardsSmallScreen(),
+            if (!ResponsiveWidget.isSmallScreen(context))
+              RevenueSectionLarge()
+            else
+              RevenueSectionSmall(),
+            AvailableDrivers(),
           ],
         ))
       ],
