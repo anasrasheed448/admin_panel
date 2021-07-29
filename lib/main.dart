@@ -1,6 +1,9 @@
 import 'package:adminpanel/controllers/menu_controller.dart';
 import 'package:adminpanel/controllers/navigation_controller.dart';
 import 'package:adminpanel/layout.dart';
+import 'package:adminpanel/pages/404/error.dart';
+import 'package:adminpanel/pages/auth/authentication.dart';
+import 'package:adminpanel/routings/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,11 +18,22 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: AuthenticationPageRoute,
+      unknownRoute: GetPage(
+        name: "not-found",
+        page: () => PageNotFound(),
+        transition: Transition.fadeIn,
+      ),
+      getPages: [
+        GetPage(name: RootRoute, page: () => SiteLayout()),
+        GetPage(
+          name: AuthenticationPageRoute,
+          page: () => AuthenticationPage(),
+        ),
+      ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         backgroundColor: light,
@@ -31,7 +45,6 @@ class MyApp extends StatelessWidget {
         }),
         primaryColor: Colors.blue,
       ),
-      home: SiteLayout(),
     );
   }
 }

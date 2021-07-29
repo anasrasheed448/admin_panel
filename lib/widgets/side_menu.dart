@@ -1,9 +1,10 @@
 import 'package:adminpanel/constants/controllers.dart';
 import 'package:adminpanel/constants/style.dart';
 import 'package:adminpanel/helpers/responsiveness.dart';
+import 'package:adminpanel/pages/auth/authentication.dart';
 import 'package:adminpanel/routings/routes.dart';
 import 'package:adminpanel/widgets/custom_text_widget.dart';
-import 'package:adminpanel/widgets/side_menuitems_widget.dart';
+import 'package:adminpanel/widgets/side_menu_items_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -58,19 +59,17 @@ class SideMenu extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: sideMenuList
-                .map((itemName) => SideMenuItem(
-                    itemName: itemName == AuthenticationPageRoute
-                        ? "Logout"
-                        : itemName,
+                .map((item) => SideMenuItem(
+                    itemName: item.name,
                     onTap: () {
-                      if (itemName == AuthenticationPageRoute) {
-                        // ignore: todo
-                        // TODO ::  go to authentication
+                      if (item.route == AuthenticationPageRoute) {
+                        // menuController.changeActiveItemTo(AuthenticationPageRoute);
+                        Get.offAll(AuthenticationPage());
                       }
-                      if (!menuController.isActive(itemName)) {
-                        menuController.changeActiveItemTo(itemName);
+                      if (!menuController.isActive(item.name)) {
+                        menuController.changeActiveItemTo(item.name);
                         if (ResponsiveWidget.isSmallScreen(context)) Get.back();
-                        navigationController.navigateTo(itemName);
+                        navigationController.navigateTo(item.route);
                       }
                     }))
                 .toList(),
